@@ -9,7 +9,7 @@ const conslTable = require('console.table');
 const chalk = require('chalk');
 const mysql = require('mysql');
 const inquirer = require('inquirer');
-const connection = require('./config/connection')
+// const connection = require('./config/connection')
 
 const connection = mysql.createConnection({
     host: 'localhost',
@@ -50,11 +50,12 @@ badCompany = () => {
               'Delete departments', 
               'Delete roles',
               'Delete employees',
-              'View the total utilized budget of a department'
+              'View the total utilized budget of a department',
+              'Exit'
             ],
     })
     .then ((answer) => {
-        switch(answers.action) {
+        switch(answer.action) {
             case 'Add a department':
                 addDepartment();
                 break;
@@ -121,31 +122,38 @@ badCompany = () => {
 // fx outside of switch case to handle the prompts
 
 const addDepartment = () => {
-    // show the current deleteDepartments
-    query = `SELECT name AS Departments FROM departments`;
+    // show the current Departments in the database
+    query = `SELECT name AS "Departments" FROM department`;
     connection.query(query, (err,results) => {
         if(err) throw err;
+
         console.log('');
         console.table(chalk.blue('List of the current Departments'), results);
-        
-    })
+        // stopped here look at answers syntax throughout code
+    
+    // ask what the name is for the new dept
     inquirer
         .prompt({
             name: 'newDept',
             type: 'input',
-            Message: 'What department would you like to add?',
+            Message: 'What department would you like to add?'
         })
+        // take the answer and insert a row into the department table
         .then((answer) => {
-            const query ="INSERT INTO department(name) VALUES('?')";
-            connection.query(query,{department:answer.department}, (err,res) => {
-                res.forEach(({name}) => {
-                    console.log(`Name: ${name}`);   
-                });
+            connection.query(`INSERT INTO department(name) VALUES('?')`, answer.newDept)
             badCompany();
-            });
+               
         });
+    });
+    
 };
-const addEmployee = () => {};
+const addEmployee = () => {
+    // connection.query('Select * FROM roles, Select CONCAT(', (err,results) => {
+    //     if(err) throw (err);
+    // })
+
+    
+};
 const addRole = () => {};
 const viewDepartment = () => {};
 const viewEmployee = () => {};
