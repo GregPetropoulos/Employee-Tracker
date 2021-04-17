@@ -1,9 +1,11 @@
 
--- Create 3 tables
+-- Create DB 
 DROP DATABASE IF EXISTS employeeDB;
 CREATE database employeeDB;
 
 USE employeeDB;
+
+-- Create 3 tables 
 
 -- PARENT TABLE
 CREATE TABLE  department (
@@ -18,7 +20,7 @@ CREATE TABLE roles (
   id INTEGER(11) AUTO_INCREMENT NOT NULL,
   title VARCHAR(30),
   salary DECIMAL(9,2),
-  department_id INTEGER NOT NULL,
+  department_id INTEGER,
   PRIMARY KEY (id),
   INDEX `idx_department_id`(department_id),
   CONSTRAINT `fk_department_id`
@@ -31,8 +33,8 @@ CREATE TABLE employee (
   id INTEGER(11) AUTO_INCREMENT NOT NULL,
   first_name VARCHAR(30),
   last_name VARCHAR(30),
-  role_id INTEGER NOT NULL,
-  manager_id INTEGER NOT NULL,
+  role_id INTEGER,
+  manager_id INTEGER,
   PRIMARY KEY (id),
   INDEX`idx_role`(role_id),
   CONSTRAINT `fk_role_id`
@@ -44,7 +46,7 @@ CREATE TABLE employee (
   REFERENCES roles(id) ON UPDATE CASCADE ON DELETE RESTRICT
   );
   
-
+-- CHECK IT WORKS
 SELECT * FROM employee;
 SELECT * FROM roles;
 SELECT * FROM department;
@@ -52,7 +54,23 @@ SELECT * FROM department;
 -- FOR ADDING DEPT
 INSERT INTO department(name)
 VALUES('xray');
-
 SELECT * FROM department
-
 SELECT name AS "Departments" FROM department
+
+-- FOR ADDING EMPLOYEE
+
+
+
+
+-- ADD ROLE
+--VIEW A DEPT
+-- VIEW AND EMPLOYEE
+-- VIEW A ROLES
+-- UPDATE EMPLOYEE ROLES
+-- UPDATE EMPLOYEE MANAGERS
+-- VIEW EMPLOYEES BY MANAGER
+-- DELETE DEPARTMENTS
+-- DELETE ROLES
+-- DELETE EMPLOYEES
+-- VIEW TOTAL UNTILIZED BUDGET OF DEPARTMENT
+-- EXIT
