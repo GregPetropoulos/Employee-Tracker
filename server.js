@@ -12,7 +12,7 @@ const chalk = require("chalk");
 const mysql = require("mysql");
 const inquirer = require("inquirer");
 const figlet = require("figlet");
-// const connection = require('./config/connection')
+
 
 // CREATING CONNECTION TO SERVER
 const connection = mysql.createConnection({
@@ -167,7 +167,6 @@ const badCompany = () => {
 };
 
 // ALL FX PER SWITCH CASE
-// WORKING
 const addDepartment = () => {
   // show the current Departments in the database
   const query = "SELECT * FROM department";
@@ -198,7 +197,7 @@ const addDepartment = () => {
       });
   });
 };
-// WORKING
+
 const addEmployee = () => {
   connection.query(roleQuery, (err, results) => {
     if (err) throw err;
@@ -255,7 +254,8 @@ const addEmployee = () => {
       });
   });
 };
-// Help
+
+//CK
 const addRole = () => {
   const addRoleQuery = `SELECT * FROM roles; SELECT * FROM department;`;
   connection.query(addRoleQuery, (err, results) => {
@@ -297,7 +297,6 @@ const addRole = () => {
   });
 };
 
-// WORKING
 const viewDepartments = () => {
   const query = "SELECT * FROM department";
   connection.query(query, (err, results) => {
@@ -307,7 +306,7 @@ const viewDepartments = () => {
   });
 };
 
-// WORKING
+
 const viewEmployees = () => {
   const query = "SELECT * FROM employee";
   connection.query(query, (err, results) => {
@@ -317,7 +316,7 @@ const viewEmployees = () => {
   });
 };
 
-// WORKING
+
 const viewRoles = () => {
   const query = "SELECT * FROM roles";
   connection.query(query, (err, results) => {
@@ -327,6 +326,7 @@ const viewRoles = () => {
   });
 };
 
+// CK
 const viewEmpByManager = () => {
   connection.query(managerQuery, (err, results) => {
     if (err) throw err;
@@ -364,8 +364,7 @@ const viewEmpByManager = () => {
       });
   });
 };
-
-// WORKING
+// CK
 const updateEmpRole = () => {
   inquirer
     .prompt([
@@ -393,9 +392,10 @@ const updateEmpRole = () => {
     });
 };
 
+// CK
 const updateEmpManagers = () => {};
 
-// WORKING
+
 const deleteDepartment = () => {
   const query = "SELECT * FROM department";
   connection.query(query, (err, results) => {
@@ -423,7 +423,7 @@ const deleteDepartment = () => {
   });
 };
 
-// help
+// CK
 const deleteRole = () => {
   query = `SELECT * FROM roles`;
   connection.query(query, (err, results) => {
@@ -451,7 +451,7 @@ const deleteRole = () => {
   });
 };
 
-// WORKING
+
 const deleteEmployee = () => {
   connection.query(allStaff, (err, results) => {
     if (err) throw err;
@@ -476,4 +476,5 @@ const deleteEmployee = () => {
   });
 };
 
+// CK
 const companyBudget = () => {};
